@@ -16,3 +16,16 @@ export const userSignup = async (req, res) => {
         console.log('Error', e.message);
     }
 }
+
+export const userLogin = async (req, res) =>{
+    try{
+     let user = await User.findOne({username: req.body.username, password: req.body.password});
+     if(user){
+         return res.status(200).json('Login Successfully');
+     }else{
+         return res.status(401).json('Something went wrong');
+     }
+    }catch (e) {
+        console.log('Error', e.message);
+    }
+}
